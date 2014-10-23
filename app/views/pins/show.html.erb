@@ -1,22 +1,23 @@
-<div class="panel panel-default">
-  <div class="panel-heading">
-    <div class="panel-title">
-      <h1>Show Pin</h1>
+<%= link_to 'Back', pins_path %>
+
+<div class="row">
+  <div class="col-md-offset-2 col-md-8">
+    <div class="panel panel-default">
+      <div class="panel-heading center">
+        <%= image_tag @pin.image.url(:medium) %>
+      </div>
+      <div class="panel-body">
+        <p><%= @pin.description %></p>
+        <p><strong><%= @pin.user.email if @pin.user %></strong></p>
+
+        <% if @pin.user == current_user %>
+            <%= link_to edit_pin_path(@pin) do %>
+              <span class="glyphicon glyphicon-edit"></span>
+              Edit
+            <% end %>
+        <% end %>
+
+      </div>
     </div>
-  </div>
-  <div class="panel-body">
-    <div class="form-group">
-  		<%= image_tag @pin.image.url(:medium) %>
-    </div>
-    <div class="form-group">
-        <strong>Description:</strong>
-      <%= @pin.description %>
-    </div>
-  </div>
-  <div class="panel-footer">
-    <% if @pin.user == current_user %>
-      <%= link_to 'Edit', edit_pin_path(@pin) %> |
-    <% end %>    
-	  <%= link_to 'Back', pins_path %>
   </div>
 </div>
